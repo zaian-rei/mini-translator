@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Translator</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <main class="window" id="window">
+      <header class="titlebar" id="drag">
+        <span class="brand">MINI TRANSLATOR</span>
+      </header>
+      <section class="body">
+        <div class="langrow">
+          <select id="from" aria-label="Translate from">
+            <option value="autodetect">Auto-detect</option>
+            <option value="ar">Arabic</option>
+            <option value="bn">Bengali</option>
+            <option value="zh">Chinese</option>
+            <option value="nl">Dutch</option>
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="el">Greek</option>
+            <option value="hi">Hindi</option>
+            <option value="id">Indonesian</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="ms">Malay</option>
+            <option value="fa">Persian</option>
+            <option value="pl">Polish</option>
+            <option value="pt">Portuguese</option>
+            <option value="ru">Russian</option>
+            <option value="es">Spanish</option>
+            <option value="tl">Tagalog</option>
+            <option value="th">Thai</option>
+            <option value="tr">Turkish</option>
+            <option value="uk">Ukrainian</option>
+            <option value="ur">Urdu</option>
+            <option value="vi">Vietnamese</option>
+          </select>
+          <button class="swap" id="swap" title="Swap languages" aria-label="Swap languages">⇄</button>
+          <select id="to" aria-label="Translate to">
+            <option value="ar">Arabic</option>
+            <option value="bn">Bengali</option>
+            <option value="zh">Chinese</option>
+            <option value="nl">Dutch</option>
+            <option value="en" selected>English</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="el">Greek</option>
+            <option value="hi">Hindi</option>
+            <option value="id">Indonesian</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="ms">Malay</option>
+            <option value="fa">Persian</option>
+            <option value="pl">Polish</option>
+            <option value="pt">Portuguese</option>
+            <option value="ru">Russian</option>
+            <option value="es">Spanish</option>
+            <option value="tl">Tagalog</option>
+            <option value="th">Thai</option>
+            <option value="tr">Turkish</option>
+            <option value="uk">Ukrainian</option>
+            <option value="ur">Urdu</option>
+            <option value="vi">Vietnamese</option>
+          </select>
+        </div>
+        <div class="label">TEXT TO TRANSLATE</div>
+        <div class="inputwrap">
+          <textarea class="input" id="input" maxlength="1000" spellcheck="true" autocorrect="on" autocomplete="on" autocapitalize="sentences" placeholder="Type or paste text…"></textarea>
+          <span class="charcount" id="count">0 / 1000</span>
+        </div>
+        <div class="actions">
+          <button class="primary" id="go">Translate</button>
+          <button class="secondary" id="clear">Clear</button>
+        </div>
+        <div class="label">TRANSLATION</div>
+        <div class="answer empty" id="answer">Your translation will appear here.</div>
+        <div class="answerfoot">
+          <span class="hint">LibreTranslate · local server</span>
+          <button class="copy" id="copy">Copy</button>
+        </div>
+        <div class="status" id="status" aria-live="polite"></div>
+        <footer class="footer">
+          <span class="mode-label">Appearance</span>
+          <div class="theme-switch" role="group" aria-label="Appearance mode">
+            <button class="theme-button active" data-theme="dark" aria-pressed="true">Dark</button>
+            <button class="theme-button" data-theme="mono" aria-pressed="false">Grey</button>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

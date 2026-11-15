@@ -12,17 +12,15 @@ npm run tauri dev
 
 ## Run LibreTranslate locally for free
 
-On macOS, use Python 3.12 to avoid native dependency build problems with very new Python versions:
+Install and open Docker Desktop (Windows or macOS), or install Docker Engine (Linux). Then run this one-line command in a terminal to download and start LibreTranslate with the 25 major languages used by this app:
 
 ```sh
-brew install python@3.12
-python3.12 -m venv ~/libretranslate312
-source ~/libretranslate312/bin/activate
-python -m pip install libretranslate
-libretranslate --load-only en,ar,bn,zh,nl,fr,de,el,hi,id,it,ja,ko,ms,fa,pl,pt,ru,es,tl,th,tr,uk,ur,vi
+docker run -d --name libretranslate -p 5000:5000 -e LT_LOAD_ONLY=en,ar,bn,zh,nl,fr,de,el,hi,id,it,ja,ko,ms,fa,pl,pt,ru,es,tl,th,tr,uk,ur,vi -v libretranslate_models:/home/libretranslate/.local:rw libretranslate/libretranslate:latest
 ```
 
-Keep the LibreTranslate terminal running while you use Translator. The app connects to `http://localhost:5000` by default and loads the language list from that server. The command enables these 25 languages; LibreTranslate downloads the needed models when it starts. The first launch may take a while.
+Docker downloads the LibreTranslate image and its language models the first time it runs. The model volume keeps the downloaded models when you stop the server, so they do not need to be downloaded again on each start. The first start can take several minutes and needs an internet connection.
+
+To start it again later, run `docker start libretranslate`. To stop it, run `docker stop libretranslate`. Keep it running while using Translator. The app connects to `http://localhost:5000` by default and loads the languages and supported translation pairs from that server. The 25 language choices are Arabic, Bengali, Chinese, Dutch, English, French, German, Greek, Hindi, Indonesian, Italian, Japanese, Korean, Malay, Persian, Polish, Portuguese, Russian, Spanish, Tagalog, Thai, Turkish, Ukrainian, Urdu, and Vietnamese. LibreTranslate's installed models determine which translation pairs are available.
 
 LibreTranslate is free and open source to self-host. The app sends text to the local server at `http://localhost:5000`.
 
@@ -39,6 +37,6 @@ Push the project to a GitHub repository to run the workflow. It runs on pushes t
 ## Translation behavior and limits
 
 - The app accepts up to 1,000 characters per request. Your LibreTranslate server may apply a lower limit.
-- The language menus start with 25 major languages and update to the languages available from the connected LibreTranslate server. Translation pairs depend on the models installed on that server.
+- The language menus include 25 major languages and update to the languages available from the connected LibreTranslate server. Translation pairs depend on the models installed on that server.
 - Translation requires the LibreTranslate server to be running. With local models downloaded, a local server can translate without sending text to a hosted translation company.
 - Spelling suggestions and autocorrection depend on the operating system's text input support and settings.
